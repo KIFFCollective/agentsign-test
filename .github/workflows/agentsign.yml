@@ -1,0 +1,16 @@
+name: agentsign
+on: pull_request
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: KIFFCollective/agentsign/action@main
+        with:
+          signers: .github/allowed_signers
+          agent-domains: troupe.nexus
+          humans: github-verified
